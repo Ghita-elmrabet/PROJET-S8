@@ -50,11 +50,11 @@ par_f = temp_freq_display(Fe, N,proc_auto_reg_img);
 pow_spectrum = power_spectrum(Fe, N,proc_auto_reg_img);
 zero_number = zero_crossing(proc_auto_reg_img);
 
-Aire_trapeze = aire_trapz_fft(12,-0.12,0.24,proc_auto_reg_img);
-Aire_rectangle = aire_rec(12,-0.12,0.24,f,pow_spectrum );
+Aire_trapeze = aire_trapz_fft(-0.12,0.24,proc_auto_reg_img);
+Aire_rectangle = aire_rec(-0.12,0.24,f,proc_auto_reg_img );
 
-Aire_trapeze_total = aire_trapz_fft(12,-0.5,0.49,proc_auto_reg_img);
-Aire_rectangle_total = aire_rec(12,-0.5,0.49,f,pow_spectrum);
+Aire_trapeze_total = aire_trapz_fft(-0.5,0.49,proc_auto_reg_img);
+Aire_rectangle_total = aire_rec(-0.5,0.49,f,proc_auto_reg_img);
 
 matlab_function=trapz(f,pow_spectrum) %fct de verification sur -O.5 a 0.5
 
@@ -65,8 +65,8 @@ disp(Aire_trapeze);
 fprintf('Rectangle Method: The spectrum power between f1 and f2 :\n');
 disp(Aire_rectangle);
 
-fprintf('Trapeze Method: The spectrum power between -0.5 and 0.45 :\n');
+fprintf('Trapeze Method: The spectrum power between -0.5 and 0.49 :\n');
 disp(Aire_trapeze_total);
-fprintf('Rectangle Method: The spectrum power between -0.5 and 0.45 :\n');
+fprintf('Rectangle Method: The spectrum power between -0.5 and 0.49 :\n');
 disp(Aire_rectangle_total);
 
