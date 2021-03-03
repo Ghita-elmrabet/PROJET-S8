@@ -3,6 +3,5 @@ function [ Y ] = coarse_graining( X,t )
     Y = conv(X,h);
     Y = Y(t:end-t+1);
     Y = Y(1:t:end);
-    analyse_filter(h);
 end
 
