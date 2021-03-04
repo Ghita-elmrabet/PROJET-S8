@@ -1,7 +1,7 @@
 addpath('../../src/MSE/');
 
 clear
-close all
+% close all
 
 % variance du bruit
 sigma = 1;
@@ -25,16 +25,17 @@ for i=1:length(N_all)
     bbg = sigma*randn(1,N);
     
     [CMSE, SE] = my_cmse(bbg,m,r,s_max);
-    plot(SE)
-    Legend{i} = strcat('N=num2str(N);
+    plot(SE, '-*')
+    Legend{i} = strcat('N=',num2str(N));
 end
 
-plot(sampen_analytical_bbg(sigma,r,s_max))
+plot(sampen_analytical_bbg(sigma,r,s_max), '-')
 Legend{end} = 'Analytical';
 hold off;
 
 legend(Legend)
-
+xlabel('Scale factor')
+ylabel('SampEn')
 
 
 

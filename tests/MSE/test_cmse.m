@@ -24,7 +24,7 @@ for i=1:length(N_all)
     N = N_all(i);
     bbg = sigma*randn(1,N);
     
-    [CMSE, SE] = my_mse(bbg,m,r,s_max);
+    [CMSE, SE] = my_cmse(bbg,m,r,s_max);
     plot(SE, '-*')
     Legend{i} = strcat('N=',num2str(N));
 end
