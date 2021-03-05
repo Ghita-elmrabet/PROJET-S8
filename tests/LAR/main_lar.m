@@ -1,4 +1,5 @@
 %% Initialisation
+addpath('../../src/LAR/');
 clear all
 close all
 clc;
@@ -7,7 +8,7 @@ clc;
 Te = 1;            % Periode d'échantillonnage en s
 Fe = 1/Te;         % Fréquence d'échantillonnage en Hz
 N  = 5000;         % Nombre d echantillons du processus AR
-p  = 7;            % Ordre du Processus AR
+p  = 5;            % Ordre du Processus AR
 
 moy = 0; % Moyenne du BBGC
 var = 1; % Variance du BBGC
@@ -54,8 +55,8 @@ fprintf("Les paramètres AR estimés :\n");
 disp([1,thetap]);
 fprintf("Les paramètres AR estimés par matlab :\n");
 disp(ar_mat1);
-fprintf("Les coefficients de réflexion :\n");
-disp(coefs_ref);
+% fprintf("Les coefficients de réflexion :\n");
+% disp(coefs_ref);
 fprintf("Les Log-Area-Ratio :\n");
 disp(LAR);
 fprintf("Les Log-Area-Ratio par matlab :\n");
