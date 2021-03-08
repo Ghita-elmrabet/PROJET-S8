@@ -10,7 +10,7 @@ sigma = 1;
 s_max = 20;
 r = 0.15*sigma;
 m = 2;
-
+FILTRE_NAME = 'moyenneur';
 
 N_all = [1000 2000 4000 10000];
 
@@ -24,12 +24,12 @@ for i=1:length(N_all)
     N = N_all(i);
     bbg = sigma*randn(1,N);
     
-    [CMSE, SE] = my_cmse(bbg,m,r,s_max);
+    [CMSE, SE] = my_cmse(bbg,m,r,s_max,FILTRE_NAME);
     plot(SE, '-*')
     Legend{i} = strcat('N=',num2str(N));
 end
 
-plot(sampen_analytical_bbg(sigma,r,s_max), '-')
+plot(sampen_analytical_bbg(sigma,r,s_max,FILTRE_NAME), '-')
 Legend{end} = 'Analytical';
 hold off;
 

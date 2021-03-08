@@ -1,6 +1,5 @@
-function [ Y ] = coarse_graining( X,t )
-    h = ones(1,t)./t;
-    Y = conv(X,h);
-    Y = Y(t:end-t+1);
+function [ b,a ] = coarse_graining( t )
+    b = ones(1,t)./t;
+    a = 1;
 end
 
