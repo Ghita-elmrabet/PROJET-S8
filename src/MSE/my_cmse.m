@@ -1,19 +1,8 @@
-function [CMSE, SE] = my_cmse(x, m, r, scale_max, filtre)
-    if ~exist('filtre','var')
-        filtre = "moyenneur";
-    end
-
-    if strcmp(filtre, "moyenneur")
-        FILTRE = @(s) coarse_graining(s);
-    elseif strcmp(filtre, "butterworth")
-        FILTRE = @(s) my_butterworth(s);
-    else
-        throw("wrong filtre name");
-    end
+function [CMSE, SE] = my_cmse(x, m, r, scale_max, varargin)
+    FILTRE = get_filter_func_from_string(varargin);
 
     SE = zeros(1,scale_max);
     for s = 1:scale_max
-        s
         [b,a] = FILTRE(s);
         x_filtered = filter(b,a,x);
         for k = 0:(s-1)

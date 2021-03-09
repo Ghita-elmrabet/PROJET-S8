@@ -1,11 +1,11 @@
-function [RCMSE, SE] = my_rcmse(x, m, r, scale_max)
+function [RCMSE, SE] = my_rcmse(x, m, r, scale_max, varargin)
+    FILTRE = get_filter_func_from_string(varargin);
+
     SE = zeros(1,scale_max);
-    
     for s = 1:scale_max
-        s
         n_n_tot = 0;
         n_d_tot = 0;
-        [b,a] = coarse_graining(s);
+        [b,a] = FILTRE(s);
         x_filtered = filter(b,a,x);
         for k = 0:(s-1)
             x_downsample = x_filtered(1+k:s:end);
@@ -25,7 +25,7 @@ function [n_n, n_d] = n(x, m, r)
     N = length(x);
     for i = 1:N
         for j = i+1:N
-            if( j+m-1 <= N && max(abs(x(i:i+m-1)-x(j:j+m-1))) < r )
+            if( j+m-1 <= N && abs(x(i)-x(j)) < r && abs(x(i+1)-x(j+1)) < r )
                 n_n = n_n+1;
                 if( j+m <= N && abs(x(i+m) - x(j+m)) < r )
                     n_d = n_d+1;

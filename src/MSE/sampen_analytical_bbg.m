@@ -1,16 +1,5 @@
-function [SE] = sampen_analytical_bbg(sigma, r, scale_max, filtre)
-    if ~exist('filtre','var')
-        filtre = "moyenneur";
-    end
-
-    if strcmp(filtre, "moyenneur")
-        FILTRE = @(s) coarse_graining(s);
-    elseif strcmp(filtre, "butterworth")
-        FILTRE = @(s) my_butterworth(s);
-    else
-        throw("wrong filtre name");
-    end
-    
+function [SE] = sampen_analytical_bbg(sigma, r, scale_max, varargin)
+    FILTRE = get_filter_func_from_string(varargin);    
 
     SE = zeros(1,scale_max);
     for tau = 1:scale_max
