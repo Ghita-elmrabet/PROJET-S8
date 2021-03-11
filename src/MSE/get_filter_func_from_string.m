@@ -12,7 +12,7 @@ function [FILTRE] = get_filter_func_from_string(myvarargin)
     elseif strcmp(filtre, "chebyshev1")
         FILTRE = @(s) filtre_chebyshev1(s);
     elseif strcmp(filtre, "chebyshev2")
-        FILTRE = @(s) filtre_chebyshev1(s);
+        FILTRE = @(s) filtre_chebyshev2(s);
     elseif strcmp(filtre, "chebyshev1_nul_phase")
         FILTRE = @(s) filtre_chebyshev1_nul_phase(s);
     elseif strcmp(filtre, "chebyshev2_nul_phase")
