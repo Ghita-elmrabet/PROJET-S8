@@ -1,0 +1,4 @@
+function [MSEs] = se_to_mse(SEs)
+    MSEs = size(SEs);
+    for i=1:size(
+end

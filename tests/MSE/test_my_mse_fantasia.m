@@ -12,7 +12,7 @@ tau_max = 20;
 %% A CHANGER 
 % POUR CHANGER LE FILTRE
 % POUR CHANGER LE TYPE DE MSE
-FILTRENAME = 'chebyshev2';
+FILTRENAME = 'blackman';
 MSEFUNC = @(samp,m,r,tau_max,FILTRENAME) my_mse(samp,m,r,tau_max,FILTRENAME);
 
 % [CMSE, SE] = my_mse(samp,m,r,tau_max);

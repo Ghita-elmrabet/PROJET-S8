@@ -1,4 +1,4 @@
-function [LARs, coefs_ref, thetap_n] = lar_function(signal, max_ordre)
+function [LARs, coefs_ref, thetap_n, rp] = lar_function(signal, max_ordre)
        
     r      = xcorr(signal, 'biased', max_ordre);  % L'estimation bias??e de la corr??lation
     maxi_r = find(r == max(r));                   % L'indice du max de la correlation
