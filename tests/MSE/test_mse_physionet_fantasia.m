@@ -4,7 +4,7 @@ addpath('../../src/MSE/');
 clear
 % close all
 
-N = 1e6;
+N = 1e5;
 
 m = 2;
 tau_max = 20;
@@ -12,7 +12,7 @@ tau_max = 20;
 %% A CHANGER 
 % POUR CHANGER LE FILTRE
 % POUR CHANGER LE TYPE DE MSE
-FILTRENAME = 'moyenneur';
+FILTRENAME = 'fenetrea';
 MSEFUNC = @(samp,m,r,tau_max,FILTRENAME) my_mse(samp,m,r,tau_max,FILTRENAME);
 
 % [CMSE, SE] = my_mse(samp,m,r,tau_max);
@@ -20,7 +20,7 @@ MSEFUNC = @(samp,m,r,tau_max,FILTRENAME) my_mse(samp,m,r,tau_max,FILTRENAME);
 
 
 %% LE TEST
-Nb = 10;
+Nb = 5;
 
 SE_old = zeros(Nb,tau_max);
 SE_young = zeros(Nb,tau_max);
@@ -31,13 +31,13 @@ for i=1:Nb
     FANTANAME_young = ['fantasia/f1y' num2str(i,'%02.f')];
     
     [samp]=rdsamp(FANTANAME_old, 2, N);
-    samp = samp(80e4+1:90e4);
+    samp = samp(9e4+1:10e4);
     r = 0.15*std(samp);
     [se,~] = msentropy(samp,[],[],[],[],[],[],[],tau_max);    
     SE_old(i,:) = se;
     
     [samp]=rdsamp(FANTANAME_young, 2, N);
-    samp = samp(80e4+1:90e4);
+    samp = samp(9e4+1:10e4);
     r = 0.15*std(samp);
     [se,~] = msentropy(samp,[],[],[],[],[],[],[],tau_max);
     SE_young(i,:) = se;
