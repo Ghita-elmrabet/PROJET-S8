@@ -22,8 +22,8 @@ RSB = 10; % Rapport signal ?? bruit. ?? tester : -5dB, 0dB, 10dB
 % modu_poles = -1+2*rand(1,p);                          
 % modu_poles = rand(1,p);                         
 % modu_poles = [0.999,0.99,-0.9,0.9];   % -> mauvaise estimation
-% modu_poles = [0.1,0.7,-0.8,0.9];      % -> bonne estimation
-modu_poles = [0.68,0.72,-0.75,0.7];     % -> bonne estimation
+modu_poles = [0.1,0.7,-0.8,0.9];      % -> bonne estimation
+%modu_poles = [0.68,0.72,-0.75,0.7];     % -> bonne estimation
 
 par_ar    = poly(modu_poles);                    % Les param??tres AR
 

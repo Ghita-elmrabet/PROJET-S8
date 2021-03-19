@@ -13,7 +13,7 @@ pole = roots(a)
 figure;
 zplane(pole);
 
-p = 10;
+p = 3;
 v = 10;
 N = 1000;
 w = sqrt(v)*randn(1000,1);

@@ -39,9 +39,9 @@ end
 vect_k=(1:p);
 figure;
 plot(vect_k,vect_fpe);
-ylabel("FPE");
-xlabel("ordre k supposé");
-title ("critère FPE");
+ylabel('FPE');
+xlabel('ordre k suppos?');
+title ('crit?re FPE');
 
 %%vecteur Akaike
 vect_akaike=zeros(1,p);
@@ -54,9 +54,9 @@ end
 vect_k=(1:p);
 figure;
 plot(vect_k,vect_akaike);
-ylabel("AIC");
-xlabel("ordre k supposé");
-title ("critère AIC");
+ylabel('AIC');
+xlabel('ordre k suppos?');
+title ('crit?re AIC');
 
 %%vecteur MDL
 vect_mdl=zeros(1,p);
@@ -69,26 +69,26 @@ end
 vect_k=(1:p);
 figure;
 plot(vect_k,vect_mdl);
-ylabel("MDL");
-xlabel("ordre k supposé");
-title ("critère MDL");
+ylabel('MDL');
+xlabel('ordre k suppos?');
+title ('crit?re MDL');
 
 figure;
 subplot(2,2,1);
 plot(vect_k,vect_fpe,'g');
-ylabel("FPE");
-xlabel("ordre k supposé");
-title ("critère FPE");
+ylabel('FPE');
+xlabel('ordre k suppos?');
+title ('crit?re FPE');
 subplot(2,2,2);
 plot(vect_k,vect_akaike,'b');
-ylabel("AIC");
-xlabel("ordre k supposé");
-title ("critère AIC");
+ylabel('AIC');
+xlabel('ordre k suppos?');
+title ('crit?re AIC');
 subplot(2,2,3);
 plot(vect_k,vect_mdl,'r');
-ylabel("MDL");
-xlabel("ordre k supposé");
-title ("critère MDL");
+ylabel('MDL');
+xlabel('ordre k suppos?');
+title ('crit?re MDL');
 
 
 
