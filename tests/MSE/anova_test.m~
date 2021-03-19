@@ -32,6 +32,9 @@ for j=1:length(filters)
     MSE(1,:,:) = MSE_old;
     MSE(2,:,:) = MSE_young;
 
+    plot(MSE_old)
+    hold on
+    plot(MSE_yo
     
     anovValue = zeros(1,tau_max);
     for s=1:tau_max

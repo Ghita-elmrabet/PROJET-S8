@@ -1,11 +1,11 @@
 clear
 
 load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_mse_9e4.mat')
-load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_cmse_9e4.mat')
-load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_rcmse_9e4.mat')
-load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_mse_butterworth_9e4.mat')
-load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_mse_chebyshev1_9e4.mat')
-load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_mse_chebyshev2_9e4.mat')
+%load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_cmse_9e4.mat')
+%load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_rcmse_9e4.mat')
+%load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_mse_butterworth_9e4.mat')
+%load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_mse_chebyshev1_9e4.mat')
+%load ('../../figures/MSE/fantasia_bp_mat/fantasia_bp_my_mse_chebyshev2_9e4.mat')
 
 
 mean_young = mean(SE_young,1);
