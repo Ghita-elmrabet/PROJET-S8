@@ -3,6 +3,8 @@
 
 % Extract the speech signal and the sampling frequency
 [signal,Fe] = audioread('speech.wav');
+% Take the first channel's recorded speech
+signal = signal(:,1);
 
 Tf = 25;         % Duration of a frame (ms)
 Ts = 10;         % Duration of an overlap (ms)
