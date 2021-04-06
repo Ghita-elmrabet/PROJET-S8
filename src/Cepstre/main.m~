@@ -16,20 +16,16 @@ N = 13;          % Number of CC desired
 
 figure,
 plot(mfcc,'*-')
-xlabel('n')
-ylabel('Coefficients')
-title('MFCC')
 
-mean_mfcc = zeros(1,N);
+mean_mfcc = [];
 for i = 1:N
-    mean_mfcc(i) = mean(mfcc(i,:));
+    mean_mfcc = [mean_mfcc mean(mfcc(i,:))];
 end
 
 figure,
 plot(mean_mfcc,'o-')
 xlabel('n')
-ylabel('Coefficients')
-title('Mean MFCC')
+ylabel(
 
 %% END:
 

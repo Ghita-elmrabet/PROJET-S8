@@ -26,8 +26,8 @@ function [H,f] = MelFilterBank(M,K,F,Fe)
     
     % HERTZ scale frequencies
     Hi = zeros(1,M+2);
-    for i=1:M+2
-        Hi(i) = mel2hz(Mi(i));
+    for i=1:size(Mi,2)
+        Hi(i) = MeltoHz(Mi(i));
     end
     
     H = zeros(M,K);
@@ -35,11 +35,9 @@ function [H,f] = MelFilterBank(M,K,F,Fe)
         k = f<Hi(m);
         H(m,k) = 0;
         
-        % First part of the triangular filter
         k = f>=Hi(m) & f<=Hi(m+1);
         H(m,k) = (f(k)-Hi(m))/(Hi(m+1)-Hi(m));
         
-        % Second part of the triangular filter
         k = f>=Hi(m+1) & f<=Hi(m+2);
         H(m,k) = (Hi(m+2)-f(k))/(Hi(m+2)-Hi(m+1));
         
