@@ -28,7 +28,7 @@ function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     [frames,~] = Framing(signal,nf,ns);
     
     % Step3: DFT + Square
-    frames = abs(fft(frames,NFFT)).^2;
+    frames = abs(fft(frames,NFFT));
     
     % Step4: MEL Filter Bank
     [H,~] = MelFilterBank(M,K,F,Fe);   % MEL Filter Bank
@@ -36,6 +36,7 @@ function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     
     % Step5: log
     frames = log(frames);
+    
     
     % Step6: DCT (eq. IDFT)
     dct = DCT(N,M); % DCT matrix

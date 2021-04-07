@@ -18,7 +18,8 @@ function [frames, indexes,signal] = Framing(signal,nf,ns)
     e = L-((M-1)*ns + nf);
     if (e>0)
         signal = [signal; zeros(e,1)];
-        M = M+1;
+    else
+        M = M-1;
     end
     
     P = ns*(0:M-1);
