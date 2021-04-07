@@ -8,7 +8,7 @@ NFFT = 1024;
 [s,Fe] = audioread('speech.wav');
 f = linspace(-Fe/2,Fe/2,NFFT);
 
-ech = s(200:250,1);
+ech = s(12790:13892,1);
 ech = abs(fftshift(fft(ech,NFFT)));
 
 pech = filter([1 -a],1,ech);

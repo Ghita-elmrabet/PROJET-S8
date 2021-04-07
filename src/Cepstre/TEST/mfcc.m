@@ -12,20 +12,20 @@ N = 20;
 
 Tf = 25;
 Nf = round(1E-3*Tf*Fe);
-start = 12789;
+start = 12790;
 
-t = start/Fe:1/Fe:(start+Nf)/Fe;
+t = start/Fe:1/Fe:(start+Nf-1)/Fe;
 f = linspace(-Fe/2,Fe/2,NFFT);
 
 s = s(:,1);
-frame = s(start:start+Nf);
+frame = s(start:start+Nf-1);
 
 
 
 h = hamming(length(frame));
 frame = h.*frame;
 
-frame = abs(fftshift(fft(frame,NFFT))).^2;
+frame = abs(fftshift(fft(frame,NFFT)));
 frame = frame(K-1:end);
 
 
@@ -41,4 +41,6 @@ MFCC = dct.*C;
 
 figure,
 plot(MFCC,'o-')
-
+xlabel('n')
+ylabel('Coefficient')
+title('MFCC')

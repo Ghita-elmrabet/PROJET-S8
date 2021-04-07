@@ -3,15 +3,12 @@ clear all
 close all
 
 NFFT = 1024;
-K = (NFFT/2)+1;
-
-N = 20;
 
 [s,Fe] = audioread('speech.wav');
 
 Tf = 25;
 Nf = round(1E-3*Tf*Fe);
-start = 12790;
+start = 12790;          %30th frame
 
 t = start/Fe:1/Fe:(start+Nf-1)/Fe;
 f = linspace(-Fe/2,Fe/2,NFFT);
@@ -19,30 +16,21 @@ f = linspace(-Fe/2,Fe/2,NFFT);
 s = s(:,1);
 frame = s(start:start+Nf-1);
 
-
-h = hamming(length(frame));
-frame = h.*frame;
+window = hamming(length(frame));
+wframe = window.*frame;
 
 frame = abs(fftshift(fft(frame,NFFT)));
-frame = frame(K-1:end);
 
-
-f = linspace(0,Fe/2,K);
-MFB = MelFilterBank(N,K,[0 Fe/2],Fe);
+wframe = abs(fftshift(fft(wframe,NFFT)));
 
 figure,
-plot(f,MFB)
+plot(f,frame)
 axis tight
 xlabel('Frequency(Hz)')
 ylabel('Amplitude')
-hold on
-plot(f,frame)
+hold on 
+plot(f,wframe)
+axis tight
 xlabel('Frequency(Hz)')
 ylabel('Amplitude')
-
-C = MFB*frame;
-
-figure,
-plot(C,'o-')
-xlabel('n')
-ylabel('Amplitude')
+title('30th frame spectrum')
