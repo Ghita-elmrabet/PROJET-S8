@@ -6,7 +6,8 @@ close all
 NFFT = 1024;
 K = (NFFT/2)+1;
 
-N = 20;
+N = 13;
+M = 20;
 
 [s,Fe] = audioread('speech.wav');
 
@@ -30,14 +31,14 @@ frame = frame(K-1:end);
 
 
 f = linspace(0,Fe/2,K);
-MFB = MelFilterBank(N,K,[0 Fe/2],Fe);
+MFB = MelFilterBank(M,K,[0 Fe/2],Fe);
 
 C = MFB*frame;
 C = log(C);
 
-dct = DCT(N,1);
+dct = DCT(N,M);
 
-MFCC = dct.*C;
+MFCC = dct*C;
 
 figure,
 plot(MFCC,'o-')
