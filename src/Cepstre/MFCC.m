@@ -15,7 +15,7 @@ function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     
     %% START:
     nf = round(1E-3*Tf*Fe);     % Duration of the frame --> number of samples
-    ns  = round(1E-3*Ts*Fe);    % Duration of the overlap --> number of samples
+    ns = round(1E-3*Ts*Fe);     % Duration of the overlap --> number of samples
     
     NFFT = 2^nextpow2(nf);      % NFFT
     K = (NFFT/2)+1;

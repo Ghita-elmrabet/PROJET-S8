@@ -27,7 +27,8 @@ M = 20;          % Number of filters in MEL Filter Bank
 N = 13;          % Number of CC desired
 
 % Extract MFCC (MATLAB ver.)
-coeffs = mfcc(signal,Fe,'LogEnergy','Replace')';
+s = stft(signal,'Window',hamming(round(0.025*Fe)),'OverlapLength',round(0.01*Fe),'Centered',false);
+coeffs = mfcc(s,Fe,'LogEnergy','Ignore')';
 
 mean_coeffs = zeros(1,N);
 for i = 1:N
@@ -50,9 +51,9 @@ title('Mean MFCC (MATLAB ver.)')
 [mfcc] = MFCC(signal,Fe,Tf,Ts,alpha,F,M,N);
 
 figure,
-plot(mfcc,'*-')
+plot(mfcc(:,30),'*-')
 xlabel('n')
-ylabel('Coefficients')
+ylabel('Coefficient')
 title('MFCC')
 
 mean_mfcc = zeros(1,N);
@@ -63,10 +64,8 @@ end
 figure,
 plot(mean_mfcc,'o-')
 xlabel('n')
-ylabel('Coefficients')
+ylabel('Coefficient')
 title('Mean MFCC')
-
-
 
 %% END:
 
