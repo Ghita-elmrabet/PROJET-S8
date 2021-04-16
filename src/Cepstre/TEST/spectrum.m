@@ -4,6 +4,7 @@ close all
 
 NFFT = 1024;
 K = NFFT/2+1;
+a = 0.97;
 
 [s,Fe] = audioread('speech.wav');
 Tf = 25;

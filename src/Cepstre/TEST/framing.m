@@ -4,8 +4,10 @@ close all
 
 NFFT = 1024;
 K = NFFT/2+1;
+a = 0.97;
 
 [s,Fe] = audioread('speech.wav');
+s = filter([1 -a],1,s);
 
 Tf = 25;
 Nf = round(1E-3*Tf*Fe);
