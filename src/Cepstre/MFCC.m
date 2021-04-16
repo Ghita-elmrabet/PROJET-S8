@@ -19,6 +19,7 @@ function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     
     NFFT = 2^nextpow2(nf);      % NFFT
     K = (NFFT/2)+1;
+    
         
     % Step1: Pre-emphasis
     signal = filter([1 -alpha],1,signal);
@@ -27,16 +28,16 @@ function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     % Step2: Framing + Windowing
     [frames,~] = Framing(signal,nf,ns);
     
+    
     % Step3: DFT + Square
-    frames = abs(fft(frames,NFFT));
+    frames = abs(fft(frames));
     
     % Step4: MEL Filter Bank
-    [H,~] = MelFilterBank(M,K,F,Fe);   % MEL Filter Bank
-    frames = H*frames(1:K,:);           % Filtered frames
+    H = MelFilterBank(M,K,F,Fe);   % MEL Filter Bank
+    frames = H*frames(1:K,:);          % Filtered frames
     
     % Step5: log
     frames = log(frames);
-    
     
     % Step6: DCT (eq. IDFT)
     dct = DCT(N,M); % DCT matrix

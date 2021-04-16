@@ -19,15 +19,15 @@ ylabel('Amplitude')
 title('Speech signal')
 
 
-Tf = 25;         % Duration of a frame (ms)
-Ts = 10;         % Duration of an overlap (ms)
+Tf = 30;         % Duration of a frame (ms)
+Ts = 15;         % Duration of an overlap (ms)
 alpha = 0.97;    % Pre-emphasis parameter
 F = [0 Fe/2];    % Frequency boudaries (Fmax,Fmin)
-M = 20;          % Number of filters in MEL Filter Bank
+M = 40;          % Number of filters in MEL Filter Bank
 N = 13;          % Number of CC desired
 
 % Extract MFCC (MATLAB ver.)
-s = stft(signal,'Window',hamming(round(0.025*Fe)),'OverlapLength',round(0.01*Fe),'Centered',false);
+s = stft(signal,'Window',hamming(round(0.030*Fe)),'OverlapLength',round(0.015*Fe),'Centered',false);
 coeffs = mfcc(s,Fe,'LogEnergy','Ignore')';
 
 mean_coeffs = zeros(1,N);
@@ -48,10 +48,10 @@ ylabel('Coefficient')
 title('Mean MFCC (MATLAB ver.)')
 
 % Extract MFFC
-[mfcc] = MFCC(signal,Fe,Tf,Ts,alpha,F,M,N);
+mfcc = MFCC(signal,Fe,Tf,Ts,alpha,F,M,N);
 
 figure,
-plot(mfcc(:,30),'*-')
+plot(mfcc,'*-')
 xlabel('n')
 ylabel('Coefficient')
 title('MFCC')
@@ -66,6 +66,14 @@ plot(mean_mfcc,'o-')
 xlabel('n')
 ylabel('Coefficient')
 title('Mean MFCC')
+
+figure,
+plot_mfcc(mfcc,1E-3*Ts)
+title('MFCC')
+
+figure,
+plot_mfcc(coeffs,1E-3*Ts)
+title('MFCC (MATLAB ver.)')
 
 %% END:
 

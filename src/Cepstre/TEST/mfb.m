@@ -5,7 +5,7 @@ close all
 NFFT = 1024;
 K = (NFFT/2)+1;
 
-N = 20;
+N = 40;
 
 [s,Fe] = audioread('speech.wav');
 
@@ -29,6 +29,14 @@ frame = frame(K-1:end);
 
 f = linspace(0,Fe/2,K);
 MFB = MelFilterBank(N,K,[0 Fe/2],Fe);
+
+figure,
+plot(f,MFB)
+axis tight
+xlabel('Frequency(Hz)')
+ylabel('Amplitude')
+title('MEL scale Filter Bank')
+
 
 figure,
 plot(f,MFB)
