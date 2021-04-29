@@ -10,33 +10,41 @@ sigma = 1;
 s = 3;
 r = 0.15*sigma;
 m = 2;
-tau_max = 10
-
+tau = [2,3];
 N = 4000;
 
 x = sigma*randn(1,N);
 
-cutoff = 0.1:0.1:0.9;
+cutoff = 0.1:0.01:0.9;
 
-SE = zeros(1,length(cutoff));
+MSE = NaN(length(cutoff),length(cutoff));
 
-for s=1:tau_max
-    for k=1:length(cutoff)
-        cut = cutoff(k);
-        [b,a] = cheby1(6,10,cut);
+for f_tau2 = 1:length(cutoff)
+    for f_tau3 = 1:f_tau2
+        % 1er Tau
+        cut_tau2 = cutoff(f_tau2);
+        [b,a] = cheby1(6,10,cut_tau2);
         x_filtered = filter(b,a,x);
-
-        x_downsample = x_filtered(1:s:end);
-        SE(s,k) = my_sampen(x_downsample, m, r);
-
+        x_downsample = x_filtered(1:tau(1):end);
+        SE_tau2 = my_sampen(x_downsample, m, r);
+        
+        %2e Tau
+        cut_tau3 = cutoff(f_tau3);
+        [b,a] = cheby1(6,10,cut_tau3);
+        x_filtered = filter(b,a,x);
+        x_downsample = x_filtered(1:tau(2):end);
+        SE_tau3 = my_sampen(x_downsample, m, r);
+        
+        MSE(f_tau2,f_tau3) = SE_tau2+SE_tau3;
     end
 end
+%%
 
 figure
-surf(cutoff,1:tau_max,SE);
-xlabel('Cutoff Frequency')
-ylabel('Tau')
-zlabel('Sample Entropy')
+surf(cutoff,cutoff,MSE);
+xlabel('Cutoff pour Tau = 3')
+ylabel('Cutoff pour Tau = 2')
+zlabel('MultiScale Entropy')
 
 
 %plot(sampen_analytical_bbg(sigma,r,s_max,FILTRE_NAME), '-')

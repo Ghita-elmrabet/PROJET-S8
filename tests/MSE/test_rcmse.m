@@ -29,13 +29,13 @@ for i=1:length(N_all)
     Legend{i} = strcat('N=',num2str(N));
 end
 
-plot(sampen_analytical_bbg(sigma,r,s_max), '-')
+plot(sampen_analytical_bbg(sigma,r,s_max), '-', 'Linewidth',2)
 Legend{end} = 'Analytical';
 hold off;
 
 legend(Legend)
 xlabel('Scale factor')
-ylabel('SampEn')
+ylabel('Entropy Measure')
 
 
 

@@ -1,51 +1,64 @@
-addpath('../../src/MSE/');
-
-
 clear
 
-filters = ["my_mse_9e4",...
-    "my_cmse_9e4",...
-    "my_rcmse_9e4",...
-    "my_mse_butterworth_9e4",...
-    "my_mse_chebyshev1_9e4",...
-    "my_mse_chebyshev2_9e4",...
-    "my_mse_fenetre_9e4",...
-    "my_mse_hamming_9e4",...
-    "my_mse_hanning_9e4",...
-    "my_mse_9e4",...
-    "my_mse_blackman_9e4",...
+filters = ['my_mse_9e4',...
+    'my_cmse_9e4',...
+    'my_rcmse_9e4',...
+    'my_mse_butterworth_9e4',...
+    'my_mse_chebyshev1_9e4',...
+    'my_mse_chebyshev2_9e4',...
+    'my_mse_fenetre_9e4',...
+    'my_mse_hamming_9e4',...
+    'my_mse_hanning_9e4',...
+    'my_mse_9e4',...
+    'my_mse_blackman_9e4',...
     ];
+
+path = '../../figures/MSE/fantasia_bp_mat/fantasia_bp_' + filters(1) + '.mat';
+load(path)
+
+tau_max = 20;
+N = 10;
+
+% ANOVA
+SE = zeros(2,N,tau_max);
+SE(1,:,:) = SE_old;
+SE(2,:,:) = SE_young;
+
+
+MSE_classique = zeros(1,tau_max);
+for s=1:tau_max
+    MSE_classique(s) = anova1(SE(:,:,s)', ['Old', 'Young'], 'off');
+end
 
 
 for j=1:length(filters)
-    path = "../../figures/MSE/fantasia_bp_mat/fantasia_bp_" + filters(j) + ".mat";
+    path = '../../figures/MSE/fantasia_bp_mat/fantasia_bp_' + filters(j) + '.mat';
     load(path)
-    
-    MSE_old = ses_to_mse(SE_old);
-    MSE_young = ses_to_mse(SE_young);
 
     tau_max = 20;
     N = 10;
 
     % ANOVA
-    MSE = zeros(2,N,tau_max);
-    MSE(1,:,:) = MSE_old;
-    MSE(2,:,:) = MSE_young;
+    SE = zeros(2,N,tau_max);
+    SE(1,:,:) = SE_old;
+    SE(2,:,:) = SE_young;
 
-    
+
     anovValue = zeros(1,tau_max);
     for s=1:tau_max
-        anovValue(s) = anova1(MSE(:,:,s)', ["Old", "Young"], 'off');
+        anovValue(s) = anova1(SE(:,:,s)', ['Old', 'Young'], 'off');
     end
 
     fig = figure;
     semilogy(anovValue)
+    hold on
+    semilogy(MSE_classique, 'Linewidth',2)
     ylim([1e-4 1])
     xlabel('Scale factor')
     ylabel('p-value')
 
-    name = "anova_" + filters(j) + ".png"
-    %saveas(fig,name)
+    name = 'anova_' + filters(j) + '.png'
+    saveas(fig,name)
     close(fig)
     
 %     break;

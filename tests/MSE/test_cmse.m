@@ -7,10 +7,10 @@ clear
 sigma = 1;
 
 % parametre cmse
-s_max = 20;
+s_max = 3;
 r = 0.15*sigma;
 m = 2;
-FILTRE_NAME = 'chebyshev';
+FILTRE_NAME = 'chebyshev1';
 
 N_all = [1000 2000 4000 10000];
 
@@ -24,7 +24,7 @@ for i=1:length(N_all)
     N = N_all(i);
     bbg = sigma*randn(1,N);
     
-    [CMSE, SE] = my_mse(bbg,m,r,s_max,FILTRE_NAME);
+    [CMSE, SE] = my_cmse(bbg,m,r,s_max,FILTRE_NAME);
     plot(SE, '-*')
     Legend{i} = strcat('N=',num2str(N));
 end
