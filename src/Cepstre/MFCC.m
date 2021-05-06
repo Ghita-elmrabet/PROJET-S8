@@ -1,4 +1,4 @@
-function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
+function [mean_mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     %% Inputs:
     
     % signal
@@ -32,6 +32,7 @@ function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     % Step3: DFT + Square
     frames = abs(fft(frames));
     
+    
     % Step4: MEL Filter Bank
     H = MelFilterBank(M,K,F,Fe);   % MEL Filter Bank
     frames = H*frames(1:K,:);          % Filtered frames
@@ -41,7 +42,13 @@ function [mfcc] = MFCC(signal, Fe, Tf, Ts, alpha, F, M, N)
     
     % Step6: DCT (eq. IDFT)
     dct = DCT(N,M); % DCT matrix
-    mfcc = dct*frames; 
+    mfcc = dct*frames;
+    
+    mean_mfcc = zeros(1,N);
+    for i = 1:N
+        mean_mfcc(i) = mean(mfcc(i,:));
+    end
+    mean_mfcc = mean_mfcc./max(mean_mfcc);
     
     %% END.
 end

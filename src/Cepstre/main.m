@@ -5,7 +5,7 @@ close all
 %% START:
 
 % Extract the speech signal and the sampling frequency
-[signal,Fe] = audioread('speech.wav');
+[signal,Fe] = audioread('audio3.wav');
 % Take the first channel's recorded speech
 signal = signal(:,1);
 
@@ -26,6 +26,9 @@ F = [0 Fe/2];    % Frequency boudaries (Fmax,Fmin)
 M = 40;          % Number of filters in MEL Filter Bank
 N = 13;          % Number of CC desired
 
+m = 3;           % Number of samples
+n = 1;           % Number of cases (WE ONLY TEST FOR "a" CASE)
+
 % Extract MFCC (MATLAB ver.)
 s = stft(signal,'Window',hamming(round(0.030*Fe)),'OverlapLength',round(0.015*Fe),'Centered',false);
 coeffs = mfcc(s,Fe,'LogEnergy','Ignore')';
@@ -34,12 +37,8 @@ mean_coeffs = zeros(1,N);
 for i = 1:N
     mean_coeffs(i) = mean(coeffs(i,:));
 end
+mean_coeffs = mean_coeffs./max(mean_coeffs);
 
-figure,
-plot(coeffs,'*-')
-xlabel('n')
-ylabel('Coefficient')
-title('MFCC (MATLAB ver.)')
 
 figure,
 plot(mean_coeffs,'*-')
@@ -56,16 +55,7 @@ xlabel('n')
 ylabel('Coefficient')
 title('MFCC')
 
-mean_mfcc = zeros(1,N);
-for i = 1:N
-    mean_mfcc(i) = mean(mfcc(i,:));
-end
-
-figure,
-plot(mean_mfcc,'o-')
-xlabel('n')
-ylabel('Coefficient')
-title('Mean MFCC')
+p = predict(signal,Fe, Tf, Ts, alpha, F, M, N,m,n);
 
 figure,
 plot_mfcc(mfcc,1E-3*Ts)
