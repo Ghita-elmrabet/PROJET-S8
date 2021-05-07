@@ -6,6 +6,6 @@ function [Hz] = MeltoHz(Mel)
     % Hz: Frequency (Hz)
     
     %% START:
-    Hz = 700*exp(Mel/2595) - 700;
+    Hz = 700*exp(Mel/1127) - 700;
     %% END.
 end

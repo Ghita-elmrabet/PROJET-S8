@@ -4,7 +4,7 @@ clear
 
 % load ("../../figures/MSE/my_mse_blackman_N_rate.mat")
 % load ("my_mse_blackman_N_rate_3e3.mat")
-load ("my_mse_blackman_N_eleve_rate_eleve_3e3.mat")
+load ("my_mse_blackman_fantasia_2500.mat")
 % SE dim
 % N,rate,Nb,tau_max
 
@@ -45,19 +45,19 @@ for i=1:size(MSE,2)
 end
 
 figure
-surf(N_SIZES, RATES, anovaValue(:,:,20))
+surf(N_SIZES, RATES, anovaValue(:,:,2))
 xlabel('N')
 ylabel('rate')
 zlabel('p-value')
 
 figure
-surf(N_SIZES, RATES, anovaValue(:,:,13))
+surf(N_SIZES, RATES, anovaValue(:,:,3))
 xlabel('N')
 ylabel('rate')
 zlabel('p-value')
 
 figure
-surf(N_SIZES, RATES, anovaValue(:,:,5))
+surf(N_SIZES, RATES, anovaValue(:,:,4))
 xlabel('N')
 ylabel('rate')
 zlabel('p-value')

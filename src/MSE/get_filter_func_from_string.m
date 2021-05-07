@@ -21,6 +21,16 @@ function [FILTRE] = get_filter_func_from_string(myvarargin)
         FILTRE = @(s) filtre_hanning(s);
     elseif strcmp(filtre, "blackman")
         FILTRE = @(s) filtre_blackman(s);
+    elseif strcmp(filtre, "blackman_coff")
+        coff = myvarargin{2};
+        N = myvarargin{3};
+        FILTRE = @(s) filtre_blackman_coff(s,coff,N);
+    elseif strcmp(filtre, "blackman_rate")
+        rate = myvarargin{2};
+        N = myvarargin{3};
+        FILTRE = @(s) filtre_blackman_rate(s,rate, N);
+    elseif strcmp(filtre, "none")
+        FILTRE = @(s) filtre_none(s);
     else
         error(['Wrong filtre name, please instead use : ' newline  ...
             'moyenneur' newline...
@@ -30,6 +40,7 @@ function [FILTRE] = get_filter_func_from_string(myvarargin)
             'fenetre' newline...
             'hamming' newline...
             'hanning' newline...
+            'blackman' newline...
         ]);
     end
 end
