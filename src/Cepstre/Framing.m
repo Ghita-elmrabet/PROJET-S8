@@ -1,4 +1,4 @@
-function [frames, indexes,signal] = Framing(signal,nf,ns)
+function [frames, indexes] = Framing(signal,nf,ns)
     %% Inputs:
     
     % signal
@@ -15,11 +15,14 @@ function [frames, indexes,signal] = Framing(signal,nf,ns)
     L = length(signal);          % Length of the signal vector
     M = floor((L-nf)/ns + 1);    % Number of frames
     
+    
     e = L-((M-1)*ns + nf);
+    
     if (e>0)
-        signal = [signal; zeros(e,1)];
-        M = M+1;
+        %signal = [signal; zeros(e,1)];
+        %M = M+1;
     end
+    
     
     P = ns*(0:M-1);
     Q = (1:nf)';
@@ -27,7 +30,7 @@ function [frames, indexes,signal] = Framing(signal,nf,ns)
     
     frames = signal(indexes);
     
-    frames = diag(hamming(nf))*frames;
+    frames = diag(hanning(nf))*frames;
     
     %% END.
 end
