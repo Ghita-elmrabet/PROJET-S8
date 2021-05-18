@@ -13,12 +13,12 @@ tau_max = 10;
 %% A CHANGER 
 % POUR CHANGER LE FILTRE
 % POUR CHANGER LE TYPE DE MSE
-FILTRENAME = 'none';
-MSEFUNC = @(samp,r) my_rcmse(samp,m,r,tau_max,FILTRENAME);
+FILTRENAME = 'moyenneur';
+MSEFUNC = @(samp,r) my_mse(samp,m,r,tau_max,FILTRENAME);
 
 Fe = 250;
 
-N_samp = 200; % < 2800
+N_samp = 2500; % < 2800
 
 %% LE TEST
 Nb = 16;

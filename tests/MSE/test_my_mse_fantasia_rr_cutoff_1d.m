@@ -3,7 +3,7 @@ addpath('../../src/MSE/');
 clear
 
 
-load ("mat_fix3_rcmse_fantasia_rr_cutoff_blackman_200_10.mat")
+load ("mat_fix3_fantasia_rr_cutoff_blackman_2500_50.mat")
 % SE dim
 % Nb,co1,co2,tau_max
 
