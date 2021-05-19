@@ -22,6 +22,7 @@ end
 R=regression(log(3:floor(length(signal)/2)),log(F_n(3:end))); 
 
 alpha=(R(2)-R(1))/(log(4)-log(3));
+signal
 
 figure,
 hold on
