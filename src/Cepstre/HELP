@@ -1,0 +1,26 @@
+THIS IS A GUIDE FOR TO HELP YOU USE OUR ALGORITHMS
+
+1- We test all the implemented functions in main.m
+
+2- MFCC.m is the function used to calculate MFCC vector of a sound: it uses Framing.m, MelFilterBank.m and DCT.m
+
+3- predict.m is the function used to recognize a recorded sound among sounds already recorded in sounds file (database).
+
+We only test for vowels sounds (database):
+
+sound1 --> sound A
+
+sound2 --> sound O
+
+sound3 --> sound I
+
+sound4 --> sound E
+
+sound5 --> sound U
+
+Sounds to predict are '.wav' files record%d.wav.
+
+4- To record a new voice, use the function record.m with Fe = 16000 Hz. Feel free to choose the name of your recorded sample.
+
+
+N.B: add to path the folder audio and its subfolders to avoid errors while running the code.

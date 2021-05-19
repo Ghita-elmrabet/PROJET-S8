@@ -23,7 +23,7 @@ function [p] = predict(signal,Fe, Tf, Ts, alpha, F, M, N,m,n)
     
     for i=1:n
         for j=1:m
-            [samp,freq] = audioread(sprintf('audio%d.wav',(i-1)*m + j));
+            [samp,freq] = audioread(sprintf('./audio/sounds/sound%d.wav',(i-1)*m + j));
             samps{(i-1)*m + j} = samp;
             freqs = [freqs freq];
         end
@@ -44,9 +44,7 @@ function [p] = predict(signal,Fe, Tf, Ts, alpha, F, M, N,m,n)
     for k=1:size(mfcc,1)
         pmfcc(k) = norm(smfcc-mfcc(k,:));
     end
-    
     p = find(pmfcc == min(pmfcc));
-    disp(p)
     
     %% END.
     
