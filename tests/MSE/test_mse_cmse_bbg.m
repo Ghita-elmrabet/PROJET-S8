@@ -18,20 +18,17 @@ m = 2;
 
 FILTRE_NAME = 'moyenneur';
 
-
+figure
 hold on;
     
-    
-[~, SE] = my_mse(bbg,m,r,s_max,FILTRE_NAME);
-plot(SE, '-*')
-[~, SE] = my_cmse(bbg,m,r,s_max,FILTRE_NAME);
-plot(SE, '-*')
-[~, SE] = my_rcmse(bbg,m,r,s_max,FILTRE_NAME);
-plot(SE, '-*')
 plot(sampen_analytical_bbg(sigma,r,s_max,FILTRE_NAME), '-')
+[~, SE] = my_mse(bbg,m,r,s_max,FILTRE_NAME);
+plot(SE, '-*r')
+[~, SE] = my_cmse(bbg,m,r,s_max,FILTRE_NAME);
+plot(SE, '-*b')
 hold off;
 
-legend("MSE's version", "CMSE's version", "RCMSE's version", "Analytical")
+legend("Analytical", "MSE's version", "CMSE's version")
 xlabel('Scale factor')
 ylabel('Sample Entropy')
 
